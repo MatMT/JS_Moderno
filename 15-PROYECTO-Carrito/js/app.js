@@ -36,9 +36,26 @@ function agregarCurso(e) {
 function eliminarCurso(e) {
     if (e.target.classList.contains('borrar-curso')) {
         const cursoId = e.target.getAttribute('data-id');
+        const cursoSeleccionado = articulosCarrito.filter(curso => curso.id == cursoId);
 
-        // Elimina del arreglo de articulosCarrito por el data-id - EXCLUYE
-        articulosCarrito = articulosCarrito.filter(curso => curso.id !== cursoId);
+        // Si la cantidad del articulo > 1 disminuye
+        if (cursoSeleccionado[0].cantidad > 1) {
+            // Actualizamos la cantidad en un nuevo arreglo
+            const cursos = articulosCarrito.map(curso => {
+                if (curso.id === cursoId) {
+                    curso.cantidad--;
+                    return curso; // Retorna el objeto acutalizado
+                } else {
+                    return curso; // Retorna los objetos que no son duplicados
+                }
+            });
+            articulosCarrito = [...cursos];
+
+        } else { // Sino lo EXCLUYE
+            // Elimina del arreglo de articulosCarrito por el data-id
+            articulosCarrito = articulosCarrito.filter(curso => curso.id !== cursoId);
+        }
+
         carritoHTML(); // Iterar sobre el carrito y mostrar su HTML
     }
 }
@@ -48,7 +65,7 @@ function leerDatosCard(curso) {
     // console.log(curso);
 
     // Crear un objeto con el contenido del curso actual
-    const infoCusro = {
+    const infoCurso = {
         imagen: curso.querySelector('img').src,
         titulo: curso.querySelector('h4').textContent,
         precio: curso.querySelector('.precio span').textContent,
@@ -57,11 +74,11 @@ function leerDatosCard(curso) {
     }
 
     // Comprobar si ya existe el articulo en el carrito
-    const existe = articulosCarrito.some(curso => curso.id === infoCusro.id);
+    const existe = articulosCarrito.some(curso => curso.id === infoCurso.id);
     if (existe) {
         // Actualizamos la cantidad en un nuevo arreglo
         const cursos = articulosCarrito.map(curso => {
-            if (curso.id === infoCusro.id) {
+            if (curso.id === infoCurso.id) {
                 curso.cantidad++;
                 return curso; // Retorna el objeto acutalizado
             } else {
@@ -72,8 +89,10 @@ function leerDatosCard(curso) {
         articulosCarrito = [...cursos];
     } else {
         // Agrega elementos al arreglo del carrito
-        articulosCarrito = [...articulosCarrito, infoCusro];
+        articulosCarrito = [...articulosCarrito, infoCurso];
     }
+
+    console.log(articulosCarrito);
     carritoHTML()
 }
 
