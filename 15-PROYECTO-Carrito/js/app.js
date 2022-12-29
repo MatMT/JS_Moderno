@@ -14,6 +14,12 @@ function cargarEventListeners() {
 
     // Elimina cursos del carrito
     carrito.addEventListener('click', eliminarCurso);
+
+    // Vaciar el carrito
+    vaciarCarritoBtn.addEventListener('click', () => {
+        articulosCarrito = []; // Reseteamos el arreglo
+        limpiarHTML();  // Eliminamos el HTML
+    })
 }
 
 // Fuciones
@@ -31,7 +37,7 @@ function eliminarCurso(e) {
     if (e.target.classList.contains('borrar-curso')) {
         const cursoId = e.target.getAttribute('data-id');
 
-        // Elimina del arreglo de articulosCarrito por el data-id
+        // Elimina del arreglo de articulosCarrito por el data-id - EXCLUYE
         articulosCarrito = articulosCarrito.filter(curso => curso.id !== cursoId);
         carritoHTML(); // Iterar sobre el carrito y mostrar su HTML
     }
@@ -68,10 +74,6 @@ function leerDatosCard(curso) {
         // Agrega elementos al arreglo del carrito
         articulosCarrito = [...articulosCarrito, infoCusro];
     }
-
-
-
-    console.log(articulosCarrito);
     carritoHTML()
 }
 
