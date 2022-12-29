@@ -4,6 +4,7 @@ const contenedorCarrito = document.querySelector('#lista-carrito tbody');
 const vaciarCarritoBtn = document.querySelector('#vaciar-carrito');
 
 const listaCursos = document.querySelector('#lista-cursos');
+let articulosCarrito = [];
 
 cargarEventListeners();
 
@@ -24,7 +25,7 @@ function agregarCurso(e) {
 
 // Lee el contendio HTML y extrae información
 function leerDatosCard(curso) {
-    console.log(curso);
+    // console.log(curso);
 
     // Crear un objeto con el contenido del curso actual
     const infoCusro = {
@@ -35,6 +36,46 @@ function leerDatosCard(curso) {
         cantidad: 1
     }
 
-    console.log(infoCusro);
+    // Agrega elementos al arreglo del carrito
+    articulosCarrito = [...articulosCarrito, infoCusro];
+
+    console.log(articulosCarrito);
+    carritoHTML()
 }
 
+// Muestra el Carrito en el HTML
+function carritoHTML() {
+    // Limpiar el HTML
+    limpiarHTML();
+
+    // Recorre el carrito y genera HTML
+    articulosCarrito.forEach(curso => {
+        const { imagen, titulo, precio, cantidad, id } = curso;
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>
+                <img src="${imagen}" width="100">
+            </td>
+            <td>${titulo}</td>
+            <td>${precio}</td>               
+            <td>${cantidad}</td>
+            <td>
+                <a href="#" class="borrar-curso" data-id="${id}"> X </a>
+            </td>
+        `;
+
+        // Agrega el HTML del carrito
+        contenedorCarrito.appendChild(row);
+    });
+}
+
+// Elimina los carritos del tbody
+function limpiarHTML() {
+    // Performance Lento
+    // contenedorCarrito.innerHTML = '';
+
+    // Performance mejor
+    while (contenedorCarrito.firstChild) {
+        contenedorCarrito.removeChild(contenedorCarrito.firstChild);
+    }
+}
