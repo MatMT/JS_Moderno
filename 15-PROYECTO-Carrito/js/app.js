@@ -36,8 +36,26 @@ function leerDatosCard(curso) {
         cantidad: 1
     }
 
-    // Agrega elementos al arreglo del carrito
-    articulosCarrito = [...articulosCarrito, infoCusro];
+    // Comprobar si ya existe el articulo en el carrito
+    const existe = articulosCarrito.some(curso => curso.id === infoCusro.id);
+    if (existe) {
+        // Actualizamos la cantidad en un nuevo arreglo
+        const cursos = articulosCarrito.map(curso => {
+            if (curso.id === infoCusro.id) {
+                curso.cantidad++;
+                return curso; // Retorna el objeto acutalizado
+            } else {
+                return curso; // Retorna los objetos que no son duplicados
+            }
+        });
+
+        articulosCarrito = [...cursos];
+    } else {
+        // Agrega elementos al arreglo del carrito
+        articulosCarrito = [...articulosCarrito, infoCusro];
+    }
+
+
 
     console.log(articulosCarrito);
     carritoHTML()
