@@ -11,6 +11,12 @@ document.addEventListener('DOMContentLoaded', function () {
     inputMensaje.addEventListener('blur', validar);
 
     function validar(e) {
+        const input = e.target.value;
 
+        if (!(input.trim())) {
+            console.log('vacio');
+        } else {
+            console.log('Algo');
+        }
     }
 });
