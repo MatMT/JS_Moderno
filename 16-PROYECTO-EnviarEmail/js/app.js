@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Seleecionar los elementos de la interfaz
     const inputEmail = document.querySelector('#email');
+    const inputCc = document.querySelector('#Cc');
     const inputAsunto = document.querySelector('#asunto');
     const inputMensaje = document.querySelector('#mensaje');
     const form = document.querySelector('#formulario');
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Asignar eventos
     inputEmail.addEventListener('input', validar);
+    inputCc.addEventListener('blur', validarCc);
     inputAsunto.addEventListener('blur', validar);
     inputMensaje.addEventListener('blur', validar);
 
@@ -30,6 +32,8 @@ document.addEventListener('DOMContentLoaded', function () {
     function enviarEmail(e) {
         e.preventDefault();
         spinner.classList.remove('hidden');
+
+        console.log(email);
 
         setTimeout(() => {
             spinner.classList.add('hidden');
@@ -121,4 +125,28 @@ document.addEventListener('DOMContentLoaded', function () {
         form.reset();
         comprobarEmail();
     }
+
+    // Extra
+    function validarCc(e) {
+        // Generar un nuevo campo con llave - valor
+        email[e.target.id] = e.target.value.trim().toLowerCase();
+
+        // Si el valor es eliminado, se elimina la llave en el campo del objeto
+        if (e.target.value === '') {
+            delete email.Cc;
+            limpiarAlerta(inputCc.parentElement);
+            comprobarEmail();
+            return;
+        }
+
+        if (!validarEmail(e.target.value)) {
+            mostrarAlerta(e.target.id, e.target.parentElement);
+            email.Cc = '';
+            comprobarEmail();
+            return;
+        }
+
+        limpiarAlerta(inputCc.parentElement);
+    }
+
 });
