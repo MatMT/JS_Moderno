@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function () {
     inputEmail.addEventListener('blur', validar);
     inputAsunto.addEventListener('blur', validar);
     inputMensaje.addEventListener('blur', validar);
-    inputCoEmail.addEventListener('blur', validar);
 
     function validar(e) {
         const input = e.target.value;
