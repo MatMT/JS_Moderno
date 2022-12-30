@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Seleecionar los elementos de la interfaz
     const inputEmail = document.querySelector('#email');
-    const inputCoEmail = document.querySelector('#co-email');
     const inputAsunto = document.querySelector('#asunto');
     const inputMensaje = document.querySelector('#mensaje');
     const form = document.querySelector('#formulario');
@@ -17,7 +16,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const type = e.target.id;
         const divReference = e.target.parentElement;
 
-        if (!(input.trim())) {
+        if (input.trim() === '') {
+            mostrarAlerta(type, divReference);
+            return;
+        }
+
+        if (type === 'email' && !validarEmail(input)) {
             mostrarAlerta(type, divReference);
             return;
         }
@@ -31,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Generar alerta en HTML
         const error = document.createElement('P');
-        error.textContent = `El campo ${type} esta vacío`;
+        error.textContent = `El ${type} esta vacío o no es válido.`;
         error.classList.add('bg-red-600', 'text-white', 'p-2', 'text-center', 'alerta');
 
         // Inyectar el error al formulario
@@ -43,6 +47,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (alerta) {
             alerta.remove();
         }
+    }
+
+    function validarEmail(email) {
+        const regex = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+        resultado = regex.test(email);
+        return resultado;
     }
 
 });
