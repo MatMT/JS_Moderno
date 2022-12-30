@@ -11,9 +11,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const inputAsunto = document.querySelector('#asunto');
     const inputMensaje = document.querySelector('#mensaje');
     const form = document.querySelector('#formulario');
+    const btnSubmit = document.querySelector('#formulario button[type="submit"]');
 
     // Asignar eventos
-    inputEmail.addEventListener('blur', validar);
+    inputEmail.addEventListener('input', validar);
     inputAsunto.addEventListener('blur', validar);
     inputMensaje.addEventListener('blur', validar);
 
@@ -24,11 +25,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         if (input.trim() === '') {
             mostrarAlerta(type, divReference);
+            email[type] = '';
+            comprobarEmail();
             return;
         }
 
         if (type === 'email' && !validarEmail(input)) {
             mostrarAlerta(type, divReference);
+            email[type] = '';
+            comprobarEmail();
             return;
         }
 
@@ -69,7 +74,13 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function comprobarEmail() {
-        console.log(Object.values(email).includes(''));
+        if (Object.values(email).includes('')) {
+            btnSubmit.classList.add('opacity-50');
+            btnSubmit.disabled = true;
+            return;
+        };
+        btnSubmit.classList.remove('opacity-50');
+        btnSubmit.disabled = false;
     }
 
 });
