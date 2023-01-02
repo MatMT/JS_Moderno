@@ -24,3 +24,23 @@ Cliente.prototype.nombreClienteSaldo = function () {
 Cliente.prototype.retiraSaldo = function (retira) {
     this.saldo -= retira;
 }
+
+function Persona(nombre, saldo, telefono) {
+    Cliente.call(this, nombre, saldo);
+    this.telefono = telefono;
+}
+
+// Copiar Proto y heredar funciones
+Persona.prototype = Object.create(Cliente.prototype)
+Persona.prototype.constructor = Cliente;
+
+// Instancia
+const juan = new Persona('juan', 400, 3494949);
+console.log(juan);
+console.log(juan.nombreClienteSaldo());
+
+Persona.prototype.mostrarTelefono = function () {
+    return `El teléfono de esta persona es ${this.telefono}`;
+}
+
+console.log(juan.mostrarTelefono());
