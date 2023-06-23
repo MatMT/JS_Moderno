@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,12 +8,14 @@
     <title>Buscador Recetas Comida</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 </head>
+
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-danger bg-gradient p-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success bg-gradient p-3">
         <div class="container-fluid">
             <a class="navbar-brand fs-4" href="index.html">Buscador de Recetas</a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -22,7 +25,7 @@
                         <a class="nav-link fs-4" href="index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fs-4 active" aria-current="page"  href="favoritos.html">Mis Favoritos</a>
+                        <a class="nav-link fs-4 active" aria-current="page" href="favoritos.html">Mis Favoritos</a>
                     </li>
                 </ul>
             </div>
@@ -31,7 +34,8 @@
     </nav>
 
 
-    <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-hidden="true">
+    <div class="modal fade" id="modal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
@@ -46,8 +50,8 @@
     </div>
 
     <main class="mt-5 container-lg">
-      <h2 class="text-center fs-1">Favoritos</h2>
-      <div id="resultado" class="favoritos row"></div>
+        <h2 class="text-center fs-1">Favoritos</h2>
+        <div id="resultado" class="favoritos row"></div>
     </main>
 
 
@@ -55,7 +59,8 @@
         <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header bg-danger text-white">
                 <strong class="me-auto text-white">App Recetas</strong>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast" aria-label="Close"></button>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
             </div>
             <div class="toast-body"></div>
         </div>
@@ -64,4 +69,5 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/app.js"></script>
 </body>
+
 </html>
