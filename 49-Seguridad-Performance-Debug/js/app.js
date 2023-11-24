@@ -127,7 +127,7 @@ function mostrarCotizacionHTML(cotizacion) {
     console.log(cotizacion);
     const { PRICE, HIGHDAY, LOWDAY, CHANGEPCT24HOUR, LASTUPDATE } = cotizacion;
 
-    debugger;
+    // debugger;
 
     const precio = document.createElement('p');
     precio.classList.add('precio');
@@ -145,7 +145,7 @@ function mostrarCotizacionHTML(cotizacion) {
     const ultimaActualizacion = document.createElement('p');
     ultimaActualizacion.innerHTML = `<p>Última Actualización: <span>${LASTUPDATE}</span></p>`;
 
-    debugger;
+    // debugger;
 
     resultado.appendChild(precio);
     resultado.appendChild(precioAlto);
