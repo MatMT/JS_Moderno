@@ -1,44 +1,39 @@
 import { eliminarCita, cargarEdicion } from '../funciones.js';
-import { contenedorCitas, heading } from '../selectores.js';
+import { contenedorCitas } from '../selectores.js';
+
 
 class UI {
-
-    constructor({citas}) {
-        this.textoHeading(citas);
-    }
 
     imprimirAlerta(mensaje, tipo) {
         // Crea el div
         const divMensaje = document.createElement('div');
         divMensaje.classList.add('text-center', 'alert', 'd-block', 'col-12');
-        
+
         // Si es de tipo error agrega una clase
-        if(tipo === 'error') {
-             divMensaje.classList.add('alert-danger');
+        if (tipo === 'error') {
+            divMensaje.classList.add('alert-danger');
         } else {
-             divMensaje.classList.add('alert-success');
+            divMensaje.classList.add('alert-success');
         }
 
         // Mensaje de error
         divMensaje.textContent = mensaje;
 
         // Insertar en el DOM
-        document.querySelector('#contenido').insertBefore( divMensaje , document.querySelector('.agregar-cita'));
+        document.querySelector('#contenido').insertBefore(divMensaje, document.querySelector('.agregar-cita'));
 
         // Quitar el alert despues de 3 segundos
-        setTimeout( () => {
+        setTimeout(() => {
             divMensaje.remove();
         }, 3000);
-   }
+    }
 
-   imprimirCitas({citas}) { // Se puede aplicar destructuring desde la función...
-       
+    imprimirCitas({ citas }) { // Se puede aplicar destructuring desde la función...
+
         this.limpiarHTML();
 
-        this.textoHeading(citas);
-
         citas.forEach(cita => {
-            const {mascota, propietario, telefono, fecha, hora, sintomas, id } = cita;
+            const { mascota, propietario, telefono, fecha, hora, sintomas, id } = cita;
 
             const divCita = document.createElement('div');
             divCita.classList.add('cita', 'p-3');
@@ -88,22 +83,14 @@ class UI {
             divCita.appendChild(btnEditar)
 
             contenedorCitas.appendChild(divCita);
-        });    
-   }
-
-   textoHeading(citas) {
-        if(citas.length > 0 ) {
-            heading.textContent = 'Administra tus Citas '
-        } else {
-            heading.textContent = 'No hay Citas, comienza creando una'
-        }
+        });
     }
 
-   limpiarHTML() {
-        while(contenedorCitas.firstChild) {
+    limpiarHTML() {
+        while (contenedorCitas.firstChild) {
             contenedorCitas.removeChild(contenedorCitas.firstChild);
         }
-   }
+    }
 }
 
 export default UI;
