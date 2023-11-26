@@ -1,0 +1,25 @@
+{
+  "name": "52-testing-cypress",
+  "version": "1.0.0",
+  "description": "Aprendiendo Cypress",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MatMT/JS_Moderno.git"
+  },
+  "keywords": [
+    "Cypress"
+  ],
+  "author": "EliDev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MatMT/JS_Moderno/issues"
+  },
+  "homepage": "https://github.com/MatMT/JS_Moderno#readme",
+  "devDependencies": {
+    "cypress": "^13.6.0"
+  }
+}
